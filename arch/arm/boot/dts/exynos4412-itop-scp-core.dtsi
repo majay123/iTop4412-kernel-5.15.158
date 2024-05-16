@@ -22,12 +22,12 @@
 		device_type = "memory";
 		reg = <0x40000000 0x40000000>;
 	};
-
+/* Removed by mcd 20240516
 	firmware@203f000 {
 		compatible = "samsung,secure-firmware";
 		reg = <0x0203F000 0x1000>;
 	};
-
+End removal */
 	fixed-rate-clocks {
 		xxti {
 			compatible = "samsung,clock-xxti";
@@ -69,11 +69,13 @@
 	};
 };
 
+/* modified by mcd 20240515 */
 &bus_dmc {
 	devfreq-events = <&ppmu_dmc0_3>, <&ppmu_dmc1_3>;
 	vdd-supply = <&buck1_reg>;
 	status = "okay";
 };
+/* End modification */
 
 &bus_acp {
 	devfreq = <&bus_dmc>;
@@ -168,8 +170,8 @@
 		regulators {
 			ldo1_reg: LDO1 {
 				regulator-name = "VDD_ALIVE";
-				regulator-min-microvolt = <1100000>;
-				regulator-max-microvolt = <1100000>;
+				regulator-min-microvolt = <1000000>;
+				regulator-max-microvolt = <1000000>;
 				regulator-always-on;
 				regulator-boot-on;
 				op_mode = <1>; /* Normal Mode */
@@ -231,8 +233,8 @@
 
 			ldo9_reg: LDO9 {
 				regulator-name = "VDD33_LCD";
-				regulator-min-microvolt = <3300000>;
-				regulator-max-microvolt = <3300000>;
+				regulator-min-microvolt = <3000000>;
+				regulator-max-microvolt = <3000000>;
 				op_mode = <1>; /* Normal Mode */
 			};
 
@@ -253,8 +255,8 @@
 
 			ldo12_reg: LDO12 {
 				regulator-name = "VDD33_UOTG";
-				regulator-min-microvolt = <3300000>;
-				regulator-max-microvolt = <3300000>;
+				regulator-min-microvolt = <3000000>;
+				regulator-max-microvolt = <3000000>;
 				regulator-always-on;
 				op_mode = <1>; /* Normal Mode */
 			};
@@ -301,8 +303,8 @@
 			/* Used by HSIC */
 			ldo18_reg: LDO18 {
 				regulator-name = "VDDIOPERI_28";
-				regulator-min-microvolt = <3300000>;
-				regulator-max-microvolt = <3300000>;
+				regulator-min-microvolt = <2800000>;
+				regulator-max-microvolt = <2800000>;
 				regulator-always-on;
 				op_mode = <1>; /* Normal Mode */
 			};
@@ -314,23 +316,27 @@
 
 			ldo20_reg: LDO20 {
 				regulator-name = "VDD28_CAM";
-				regulator-min-microvolt = <1800000>;
-				regulator-max-microvolt = <2800000>;
+				regulator-min-microvolt = <3000000>;
+				regulator-max-microvolt = <3000000>;
 				op_mode = <1>; /* Normal Mode */
 			};
 
 			ldo21_reg: LDO21 {
 				regulator-name = "VDD28_AF";
-				regulator-min-microvolt = <1800000>;
-				regulator-max-microvolt = <2800000>;
+				regulator-min-microvolt = <3000000>;
+				regulator-max-microvolt = <3000000>;
 				op_mode = <1>; /* Normal Mode */
 			};
-
+#if 0
 			ldo22_reg: LDO22 {
 				regulator-name = "VDDA28_2M";
 				regulator-min-microvolt = <2800000>;
 				regulator-max-microvolt = <2800000>;
 				op_mode = <1>; /* Normal Mode */
+			};
+#endif
+			ldo22_reg: LDO22 {
+				regulator-name = "VDDA28_2M";
 			};
 
 			ldo23_reg: LDO23 {
@@ -361,18 +367,30 @@
 				op_mode = <1>; /* Normal Mode */
 			};
 
+#if 0
 			ldo27_reg: LDO27 {
 				regulator-name = "GPS_1V8";
 				regulator-min-microvolt = <1800000>;
 				regulator-max-microvolt = <1800000>;
 				op_mode = <1>; /* Normal Mode */
 			};
+#endif
+			ldo27_reg: LDO27 {
+				regulator-name = "GPS_1V8";
+				op_mode = <0>; /* Always off Mode */
+			};
 
+#if 0
 			ldo28_reg: LDO28 {
 				regulator-name = "DVDD12";
 				regulator-min-microvolt = <1200000>;
 				regulator-max-microvolt = <1200000>;
 				op_mode = <1>; /* Normal Mode */
+			};
+#endif
+			ldo28_reg: LDO28 {
+				regulator-name = "DVDD12";
+				op_mode = <0>; /* Always off Mode */
 			};
 
 			buck1_reg: BUCK1 {
@@ -432,7 +450,7 @@
 			buck7_reg: BUCK7 {
 				regulator-name = "pvdd_buck7";
 				regulator-min-microvolt = <750000>;
-				regulator-max-microvolt = <2000000>;
+				regulator-max-microvolt = <2050000>;
 				regulator-boot-on;
 				regulator-always-on;
 				op_mode = <1>; /* Normal Mode */
