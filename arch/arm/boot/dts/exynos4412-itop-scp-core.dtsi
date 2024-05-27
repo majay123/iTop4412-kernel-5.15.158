@@ -71,7 +71,8 @@ End removal */
 
 /* modified by mcd 20240515 */
 &bus_dmc {
-	devfreq-events = <&ppmu_dmc0_3>, <&ppmu_dmc1_3>;
+	// devfreq-events = <&ppmu_dmc0_3>, <&ppmu_dmc1_3>;
+	devfreq-event = <&ppmu_dmc0_3>, <&ppmu_dmc1_3>;
 	vdd-supply = <&buck1_reg>;
 	status = "okay";
 };
@@ -348,8 +349,8 @@ End removal */
 
 			ldo24_reg: LDO24 {
 				regulator-name = "VDD33_A31";
-				regulator-min-microvolt = <3300000>;
-				regulator-max-microvolt = <3300000>;
+				regulator-min-microvolt = <3000000>;
+				regulator-max-microvolt = <3000000>;
 				op_mode = <1>; /* Normal Mode */
 			};
 
@@ -449,7 +450,7 @@ End removal */
 
 			buck7_reg: BUCK7 {
 				regulator-name = "pvdd_buck7";
-				regulator-min-microvolt = <750000>;
+				regulator-min-microvolt = <2050000>;
 				regulator-max-microvolt = <2050000>;
 				regulator-boot-on;
 				regulator-always-on;

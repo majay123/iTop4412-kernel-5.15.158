@@ -15,6 +15,9 @@
 #include <dt-bindings/sound/samsung-i2s.h>
 #include "exynos4412-itop-scp-core.dtsi"
 
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/input/input.h>
+
 / {
 	model = "TOPEET iTop 4412 Elite board based on Exynos4412";
 	compatible = "topeet,itop4412-elite", "samsung,exynos4412", "samsung,exynos4";
@@ -29,7 +32,7 @@
 
 		led2 {
 			label = "red:system";
-			gpios = <&gpx1 0 GPIO_ACTIVE_HIGH>;
+			gpios = <&gpl2 0 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
 			linux,default-trigger = "heartbeat";
 		};
